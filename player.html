@@ -26,50 +26,48 @@
             height: auto;
             display: block; /* Ensure it behaves like a block element */
         }
-        .button {
+        .hamburger {
             position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
+            top: 20px;
+            right: 20px; /* Position the icon */
             background-color: purple;
             color: white;
             border: none;
-            width: 50px; /* Button width */
-            height: 50px; /* Button height */
+            width: 50px; /* Icon button width */
+            height: 50px; /* Icon button height */
             cursor: pointer;
-            border-radius: 50%; /* Circular buttons */
             display: flex;
             justify-content: center;
             align-items: center;
+            border-radius: 50%; /* Circular button */
         }
-        #prev-button {
-            left: 10px; /* Position on the left */
-        }
-        #next-button {
-            right: 10px; /* Position on the right */
-        }
-        /* Adding icon styles */
-        .button:before {
+        .hamburger:before {
             content: '';
-            display: inline-block;
-            width: 20px; /* Icon width */
-            height: 20px; /* Icon height */
-            background-color: white; /* Icon color */
+            display: block;
+            width: 30px; /* Hamburger width */
+            height: 3px; /* Hamburger line height */
+            background-color: white; /* Hamburger line color */
+            position: relative;
         }
-        #prev-button:before {
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="white" d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6z"/></svg>');
-            background-size: cover;
+        .hamburger:before,
+        .hamburger:after {
+            transition: all 0.3s;
         }
-        #next-button:before {
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="white" d="M8.59 6.59L13.17 12l-4.58 4.59L10 18l6-6-6-6z"/></svg>');
-            background-size: cover;
+        .hamburger:after {
+            content: '';
+            display: block;
+            width: 30px; /* Hamburger width */
+            height: 3px; /* Hamburger line height */
+            background-color: white; /* Hamburger line color */
+            position: relative;
+            top: 10px; /* Space between lines */
         }
     </style>
 </head>
 <body>
     <div class="video-container">
         <video id="my-video" class="video-js" controls preload="auto"></video>
-        <button class="button" id="prev-button"></button>
-        <button class="button" id="next-button"></button>
+        <button class="hamburger" id="channel-menu-button"></button>
     </div>
 
     <script>
@@ -138,14 +136,9 @@
             }
         }
 
-        document.getElementById('prev-button').addEventListener('click', function() {
-            currentIndex = (currentIndex - 1 + channels.length) % channels.length; // Loop back to the last channel
-            playChannel(currentIndex);
-        });
-
-        document.getElementById('next-button').addEventListener('click', function() {
-            currentIndex = (currentIndex + 1) % channels.length; // Loop back to the start
-            playChannel(currentIndex);
+        document.getElementById('channel-menu-button').addEventListener('click', function() {
+            // Logic to open channel selection menu (e.g., dropdown)
+            alert("Channel selection menu (to be implemented)");
         });
 
         // Autoplay the first channel on page load
