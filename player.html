@@ -26,13 +26,11 @@
         }
         .button {
             position: absolute;
-            background-color: purple;
-            color: white;
+            background-color: transparent;
             border: none;
-            padding: 10px;
-            font-size: 16px;
             cursor: pointer;
-            border-radius: 5px;
+            font-size: 24px;
+            color: white;
         }
         #prev-button {
             left: 10px;
@@ -52,8 +50,8 @@
 <body>
     <div class="video-container">
         <video id="my-video" class="video-js" controls preload="auto"></video>
-        <button class="button" id="prev-button">Prev Channel</button>
-        <button class="button" id="next-button">Next Channel</button>
+        <button class="button" id="prev-button">&#9664;</button> <!-- Back icon -->
+        <button class="button" id="next-button">&#9654;</button> <!-- Next icon -->
     </div>
     <div class="channel-name" id="current-channel">Current Channel: None</div>
 
