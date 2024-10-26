@@ -14,19 +14,33 @@
             background-color: #f4f4f4;
             padding: 20px;
         }
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: auto;
+        }
         video {
             width: 100%;
             height: auto;
         }
         .button {
+            position: absolute;
             background-color: purple;
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 10px;
             font-size: 16px;
             cursor: pointer;
-            margin-top: 10px;
             border-radius: 5px;
+        }
+        #prev-button {
+            left: 10px;
+            bottom: 10px;
+        }
+        #next-button {
+            right: 10px;
+            bottom: 10px;
         }
         .channel-name {
             color: black;
@@ -36,16 +50,18 @@
     </style>
 </head>
 <body>
-    <video id="my-video" class="video-js" controls preload="auto"></video>
+    <div class="video-container">
+        <video id="my-video" class="video-js" controls preload="auto"></video>
+        <button class="button" id="prev-button">Prev Channel</button>
+        <button class="button" id="next-button">Next Channel</button>
+    </div>
     <div class="channel-name" id="current-channel">Current Channel: None</div>
-    <button class="button" id="back-button">Prev Channel</button>
-    <button class="button" id="next-button">Next Channel</button>
 
     <script>
         var video = document.getElementById('my-video');
         var currentChannelDisplay = document.getElementById('current-channel');
         var nextButton = document.getElementById('next-button');
-        var backButton = document.getElementById('back-button');
+        var prevButton = document.getElementById('prev-button');
         
         var channels = [
             "https://qp-pldt-live-grp-02-prod.akamaized.net/out/u/tv5_qp.m3u8", // TV5 HD
@@ -80,10 +96,17 @@
             "https://d2fmvezvf9jfft.cloudfront.net/playlist.m3u8", // American Pickers
             "https://d2h3esqi6ab3e7.cloudfront.net/index.m3u8", // American Idol
             "https://bec-action-1-us.tcl.wurl.tv/playlist.m3u8", // Action!!!
-            "https://spotlight-redbox.amagi.tv/playlist.m3u8", // Spotlight
+            "https://spotlight-redbox.amagi.tv/playlist.m3u8", // Redbox Spotlight
+            "https://comedy-redbox.amagi.tv/playlist.m3u8", // Redbox Comedy
+            "https://d1ku2wsea2oun8.cloudfront.net/playlist.m3u8", // Baywatch
+            "https://amg01334-beinsportsllc-beinxtra-localnow-kcy6r.amagi.tv/playlist.m3u8", // Bein Sports Xtra
+            "https://moviesphereuk-samsunguk.amagi.tv/playlist.m3u8", // MovieSphere
+            "https://glb.bozztv.com/glb/ssh101/dreamstartvnew/tracks-v1a1/mono.m3u8", // DREAMSTAR TV
+            "https://1a-1791.com/live/d0t27del/slot-133/h7ws-57lv_720p/chunklist_DVR.m3u8", // STAR TV PHILIPPINES NEW
+            "https://cbs1-wbmh-4.streamguys1.com/live/6.1080p.m3u8" // CBS
         ];
 
-        var currentIndex = -1;
+        var currentIndex = 0;
         var previousIndex = -1;
 
         function playChannel(index) {
@@ -114,7 +137,7 @@
             playChannel(currentIndex);
         });
 
-        backButton.addEventListener('click', function() {
+        prevButton.addEventListener('click', function() {
             if (previousIndex !== -1) {
                 currentIndex = previousIndex;
                 playChannel(currentIndex);
@@ -125,8 +148,7 @@
         });
 
         window.onload = function() {
-            currentIndex = 0; // Start with the first channel
-            playChannel(currentIndex);
+            playChannel(currentIndex); // Start with the first channel
         };
     </script>
 </body>
