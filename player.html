@@ -19,7 +19,7 @@
         .video-container {
             position: relative;
             width: 100%;
-            max-width: 800px; /* Set a max width for the player */
+            max-width: 800px; /* Optional max width */
         }
         video {
             width: 100%;
@@ -33,10 +33,13 @@
             background-color: purple;
             color: white;
             border: none;
-            padding: 12px 20px; /* Padding for the button */
-            font-size: 20px; /* Increase font size */
+            width: 50px; /* Button width */
+            height: 50px; /* Button height */
             cursor: pointer;
-            border-radius: 5px; /* Slightly rounded corners */
+            border-radius: 50%; /* Circular buttons */
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         #prev-button {
             left: 10px; /* Position on the left */
@@ -44,13 +47,29 @@
         #next-button {
             right: 10px; /* Position on the right */
         }
+        /* Adding icon styles */
+        .button:before {
+            content: '';
+            display: inline-block;
+            width: 20px; /* Icon width */
+            height: 20px; /* Icon height */
+            background-color: white; /* Icon color */
+        }
+        #prev-button:before {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="white" d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6z"/></svg>');
+            background-size: cover;
+        }
+        #next-button:before {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="white" d="M8.59 6.59L13.17 12l-4.58 4.59L10 18l6-6-6-6z"/></svg>');
+            background-size: cover;
+        }
     </style>
 </head>
 <body>
     <div class="video-container">
         <video id="my-video" class="video-js" controls preload="auto"></video>
-        <button class="button" id="prev-button">Previous</button>
-        <button class="button" id="next-button">Next</button>
+        <button class="button" id="prev-button"></button>
+        <button class="button" id="next-button"></button>
     </div>
 
     <script>
@@ -93,7 +112,9 @@
             "https://d1ku2wsea2oun8.cloudfront.net/playlist.m3u8",
             "https://amg01334-beinsportsllc-beinxtra-localnow-kcy6r.amagi.tv/playlist.m3u8",
             "https://moviesphereuk-samsunguk.amagi.tv/playlist.m3u8",
-            "https://glb.bozztv.com/glbtv_1/index.m3u8"
+            "https://glb.bozztv.com/glb/ssh101/dreamstartvnew/tracks-v1a1/mono.m3u8",
+            "https://1a-1791.com/live/d0t27del/slot-133/h7ws-57lv_720p/chunklist_DVR.m3u8",
+            "https://cbs1-wbmh-4.streamguys1.com/live/6.1080p.m3u8"
             // Add more channels as needed
         ];
         var currentIndex = 0;
